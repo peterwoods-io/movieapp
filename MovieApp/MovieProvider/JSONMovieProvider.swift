@@ -41,6 +41,22 @@ extension JSONMovieProvider {
             return nil
         }
     }
+
+    /// Parse a movie from a string JSON representation.
+    /// - Parameter json: JSON string representation of a movie.
+    /// - Returns: A movie, or `nil` if parsing failed.
+    static func parseMovie(fromString json: String) -> Movie? {
+        guard let jsonData = json.data(using: .utf8) else {
+            assertionFailure("Invalid JSON string")
+            return nil
+        }
+
+        do {
+            return try jsonDecoder.decode(Movie.self, from: jsonData)
+        } catch {
+            return nil
+        }
+    }
 }
 
 // MARK: JSON decoding configuration
@@ -63,7 +79,6 @@ private extension JSONMovieProvider {
 
 // MARK: Test/preview sample data
 
-#if DEBUG
 extension JSONMovieProvider {
     static let sampleMovieList = """
         [
@@ -132,4 +147,3 @@ extension JSONMovieProvider {
         ]
         """
 }
-#endif
