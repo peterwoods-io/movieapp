@@ -8,7 +8,7 @@
 import Foundation
 
 /// ViewModel for `MovieListView`.
-class MovieListViewModel: ObservableObject {
+@MainActor class MovieListViewModel: ObservableObject {
     /// The view model's state, indicating whether it's idle,
     /// loading, loaded, or has failed.
     enum State {

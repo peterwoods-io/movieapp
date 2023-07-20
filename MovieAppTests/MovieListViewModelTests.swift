@@ -9,7 +9,7 @@ import XCTest
 @testable import MovieApp
 
 /// `MovieListViewModel` tests.
-final class MovieListViewModelTests: XCTestCase {
+@MainActor final class MovieListViewModelTests: XCTestCase {
     func testInitialState() {
         let viewModel = MovieListViewModel(movieProvider: emptyProvider)
 
