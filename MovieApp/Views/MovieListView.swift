@@ -9,14 +9,17 @@ import SwiftUI
 
 /// List view of movies with ability to search.
 struct MovieListView: View {
-    let movieProvider: MovieProvider
+    @StateObject var viewModel: MovieListViewModel
 
-    @State var movies: [Movie] = []
+    @State var searchTerm: String
 
-    @State var searchTerm: String = ""
+    init(movieProvider: MovieProvider, searchTerm: String = "") {
+        self._viewModel = StateObject(wrappedValue: MovieListViewModel(movieProvider: movieProvider))
+        self.searchTerm = searchTerm
+    }
 
     var body: some View {
-        List(movies) { movie in
+        List(viewModel.movies) { movie in
             NavigationLink {
                 MovieDetailView(movie: movie)
             } label: {
@@ -27,22 +30,31 @@ struct MovieListView: View {
         .listStyle(.plain)
         .searchable(text: $searchTerm)
         .task {
-            await fetchMovies(searchTerm)
+            await viewModel.fetchMovies(query: searchTerm)
         }
         .onChange(of: searchTerm) { newValue in
-            Task {
-                await fetchMovies(newValue)
-            }
+            fetchMovies(query: newValue)
         }
         .overlay {
-            if movies.isEmpty, !searchTerm.isEmpty {
+            if viewModel.isNoResultsShown {
                 Text("No Results")
+            }
+        }
+        .alert("An error occurred while loading movie data", isPresented: $viewModel.isErrorShown) {
+            Button("Cancel", role: .cancel) {}
+            
+            Button("Retry") {
+                fetchMovies(query: searchTerm)
             }
         }
     }
 
-    func fetchMovies(_ searchTerm: String) async {
-        movies = await movieProvider.fetchMovies(searchTerm: searchTerm) ?? []
+    /// Fetch movies based on the provided query string.
+    /// - Parameter query: The query string to use in the movie search.
+    func fetchMovies(query: String) {
+        Task {
+            await viewModel.fetchMovies(query: query)
+        }
     }
 }
 
@@ -61,5 +73,16 @@ struct MovieListView_Previews: PreviewProvider {
             MovieListView(movieProvider: TMDBMovieProvider(), searchTerm: "Hitman")
         }
         .previewDisplayName("Live Data")
+
+        NavigationStack {
+            MovieListView(movieProvider: ErrorProvider(), searchTerm: "Hitman")
+        }
+        .previewDisplayName("Error")
+    }
+
+    struct ErrorProvider: MovieProvider {
+        func fetchMovies(searchTerm: String) async -> [Movie]? {
+            return nil
+        }
     }
 }

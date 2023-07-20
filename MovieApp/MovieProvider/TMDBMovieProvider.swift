@@ -13,8 +13,6 @@ class TMDBMovieProvider: MovieProvider {
             return nil
         }
 
-        print("URL: \(url.absoluteString)")
-
         do {
             let (data, _) = try await URLSession.shared.data(from: url)
 

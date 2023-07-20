@@ -9,7 +9,7 @@ import SwiftUI
 
 @main
 struct MovieApp: App {
-    var movieProvider = JSONMovieProvider(json: JSONMovieProvider.sampleMovieList)
+    var movieProvider = TMDBMovieProvider()
 
     var body: some Scene {
         WindowGroup {
