@@ -36,6 +36,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		D0C94DCA2A69CAC600232267 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		D0FFA0412A6860640088F8A8 /* MovieApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MovieApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D0FFA0442A6860640088F8A8 /* MovieApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieApp.swift; sourceTree = "<group>"; };
 		D0FFA0482A6860650088F8A8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -77,6 +78,7 @@
 		D0FFA0382A6860640088F8A8 = {
 			isa = PBXGroup;
 			children = (
+				D0C94DCA2A69CAC600232267 /* README.md */,
 				D0FFA0432A6860640088F8A8 /* MovieApp */,
 				D0FFA0542A6860650088F8A8 /* MovieAppTests */,
 				D0FFA0422A6860640088F8A8 /* Products */,
