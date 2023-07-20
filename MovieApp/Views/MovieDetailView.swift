@@ -22,10 +22,8 @@ struct MovieDetailView: View {
         ScrollView() {
             VStack(alignment: .leading, spacing: 16) {
                 HStack(alignment: .top, spacing: 16) {
-                    Image("posterPreview")
-                        .resizable()
-                        .aspectRatio(contentMode: .fit)
-                        .frame(height: 122)
+                        MoviePosterImage(path: movie.posterPath)
+                            .frame(width: 85)
                     
                     VStack(alignment: .leading, spacing: 8) {
                         Text(movie.title)
