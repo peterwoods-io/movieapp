@@ -9,9 +9,13 @@ import SwiftUI
 
 @main
 struct MovieApp: App {
+    var movieProvider = JSONMovieProvider(json: JSONMovieProvider.sampleMovieList)
+
     var body: some Scene {
         WindowGroup {
-            EmptyView()
+            NavigationStack {
+                MovieListView(movieProvider: movieProvider)
+            }
         }
     }
 }

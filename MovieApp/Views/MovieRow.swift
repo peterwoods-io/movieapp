@@ -24,12 +24,13 @@ struct MovieRow: View {
                     .fontWeight(.bold)
 
                 Text(movie.releaseDate.formatted(
-                    Date.FormatStyle().year(.defaultDigits)))
+                    Date.FormatStyle().year(.defaultDigits))
+                )
+                .foregroundColor(.gray)
             }
 
             Spacer()
         }
-
     }
 }
 

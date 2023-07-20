@@ -13,11 +13,15 @@ struct MovieListView: View {
 
     @State var movies: [Movie] = []
 
-    @State var searchTerm: String = "Hitman"
+    @State var searchTerm: String = ""
 
     var body: some View {
         List(movies) { movie in
-            MovieRow(movie: movie)
+            NavigationLink {
+                MovieDetailView(movie: movie)
+            } label: {
+                MovieRow(movie: movie)
+            }
         }
         .navigationTitle("Movie Search")
         .listStyle(.plain)
@@ -30,7 +34,6 @@ struct MovieListView: View {
                 await fetchMovies(newValue)
             }
         }
-
     }
 
     func fetchMovies(_ searchTerm: String) async {
@@ -45,7 +48,7 @@ struct MovieListView_Previews: PreviewProvider {
 
     static var previews: some View {
         NavigationStack {
-            MovieListView(movieProvider: movieProvider)
+            MovieListView(movieProvider: movieProvider, searchTerm: "Hitman")
         }
     }
 }
