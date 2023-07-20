@@ -34,6 +34,11 @@ struct MovieListView: View {
                 await fetchMovies(newValue)
             }
         }
+        .overlay {
+            if movies.isEmpty, !searchTerm.isEmpty {
+                Text("No Results")
+            }
+        }
     }
 
     func fetchMovies(_ searchTerm: String) async {
