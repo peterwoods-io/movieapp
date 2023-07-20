@@ -28,6 +28,7 @@ struct MovieListView: View {
         }
         .navigationTitle("Movie Search")
         .listStyle(.plain)
+        .scrollDismissesKeyboard(.immediately)
         .searchable(text: $searchTerm)
         .task {
             await viewModel.fetchMovies(query: searchTerm)
