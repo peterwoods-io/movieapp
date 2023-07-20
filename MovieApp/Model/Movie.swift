@@ -8,7 +8,7 @@
 import Foundation
 
 /// Information about a movie.
-struct Movie: Decodable {
+struct Movie: Decodable, Identifiable {
     /// Unique identifier.
     let id: Int
 
