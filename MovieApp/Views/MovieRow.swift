@@ -14,7 +14,7 @@ struct MovieRow: View {
     var body: some View {
         HStack(alignment: .top, spacing: 16) {
             MoviePosterImage(path: movie.posterPath)
-                .frame(width: 85)
+                .frame(width: 100)
 
             VStack(alignment: .leading, spacing: 8) {
                 Text(movie.title)

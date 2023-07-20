@@ -23,7 +23,7 @@ struct MovieDetailView: View {
             VStack(alignment: .leading, spacing: 16) {
                 HStack(alignment: .top, spacing: 16) {
                         MoviePosterImage(path: movie.posterPath)
-                            .frame(width: 85)
+                            .frame(width: 100)
                     
                     VStack(alignment: .leading, spacing: 8) {
                         Text(movie.title)
@@ -35,11 +35,13 @@ struct MovieDetailView: View {
                                 .foregroundColor(.gray)
                         }
 
-                        VStack(alignment: .leading) {
+                        VStack(alignment: .leading, spacing: 2) {
                             Text("Viewer Rating")
                                 .foregroundColor(.gray)
                             Text("\(ratingString)/10")
                                 .fontWeight(.semibold)
+                            ProgressView(value: movie.rating, total: 10)
+                                .padding(.top, 8)
                         }
                     }
                     
