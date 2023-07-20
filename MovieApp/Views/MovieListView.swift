@@ -50,5 +50,11 @@ struct MovieListView_Previews: PreviewProvider {
         NavigationStack {
             MovieListView(movieProvider: movieProvider, searchTerm: "Hitman")
         }
+        .previewDisplayName("Sample Data")
+
+        NavigationStack {
+            MovieListView(movieProvider: TMDBMovieProvider(), searchTerm: "Hitman")
+        }
+        .previewDisplayName("Live Data")
     }
 }

@@ -31,9 +31,11 @@ struct MovieDetailView: View {
                         Text(movie.title)
                             .font(.title2)
                             .fontWeight(.bold)
-                        
-                        Text(dateFormatter.string(from: movie.releaseDate))
-                            .foregroundColor(.gray)
+
+                        if let releaseDate = movie.releaseDate {
+                            Text(dateFormatter.string(from: releaseDate))
+                                .foregroundColor(.gray)
+                        }
 
                         VStack(alignment: .leading) {
                             Text("Viewer Rating")

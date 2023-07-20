@@ -57,6 +57,17 @@ extension JSONMovieProvider {
             return nil
         }
     }
+
+    static func parseMovies(fromResponseData jsonData: Data) -> [Movie]? {
+        do {
+            let response = try jsonDecoder.decode(MovieSearchResponse.self, from: jsonData)
+
+            return response.results
+        } catch {
+            print("Parse failed: \(error)")
+            return nil
+        }
+    }
 }
 
 // MARK: JSON decoding configuration
@@ -138,7 +149,7 @@ extension JSONMovieProvider {
                 "overview": "A paid assassin working for the biker gangs of Quebec outsmarts both the police and the underworld for decades, committing 28 hits over 25 years.",
                 "popularity": 7.014,
                 "poster_path": "/sFGkKtWq9rvb7AriX39369FRssP.jpg",
-                "release_date": "2022-07-20",
+                "release_date": "",
                 "title": "Confessions of a Hitman",
                 "video": false,
                 "vote_average": 6.643,

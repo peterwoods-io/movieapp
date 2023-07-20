@@ -23,14 +23,22 @@ struct MovieRow: View {
                     .font(.title2)
                     .fontWeight(.bold)
 
-                Text(movie.releaseDate.formatted(
-                    Date.FormatStyle().year(.defaultDigits))
-                )
-                .foregroundColor(.gray)
+                if let formattedReleaseDate {
+                    Text(formattedReleaseDate)
+                        .foregroundColor(.gray)
+                }
             }
 
             Spacer()
         }
+    }
+}
+
+// MARK: Private helper members
+
+private extension MovieRow {
+    var formattedReleaseDate: String? {
+        movie.releaseDate?.formatted(Date.FormatStyle().year(.defaultDigits))
     }
 }
 

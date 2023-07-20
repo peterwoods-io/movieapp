@@ -18,14 +18,15 @@ struct Movie: Decodable, Identifiable {
     /// A short description of the movie.
     let overview: String
 
-    /// The movie's release date.
-    let releaseDate: Date
+    /// The movie's release date. An empty JSON string value will
+    /// be treated as `nil`.
+    @DateOrEmpty var releaseDate: Date?
 
     /// The movie's average rating.
     let rating: Float
 
     /// The subpath to use when loading the movie poster image.
-    let posterPath: String
+    let posterPath: String?
 
     enum CodingKeys: String, CodingKey {
         case id
